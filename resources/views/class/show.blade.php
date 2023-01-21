@@ -67,7 +67,7 @@
                     <!-- About Section -->
                     <div class="bg-white p-3 shadow-sm rounded-sm">
                         <a href="{{route('student.create', ['id' => $class])}}" class="block w-1/2 mx-auto cursor-pointer text-white text-sm font-semibold rounded-lg bg-blue-500 hover:bg-blue-700 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Add Students</a>
-                        <a class="block w-1/2 mx-auto cursor-pointer text-white text-sm font-semibold rounded-lg bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Grade Students</a>
+                        <a href="{{route('grades.create', ['id' => $class])}}" class="block w-1/2 mx-auto cursor-pointer text-white text-sm font-semibold rounded-lg bg-green-500 hover:bg-green-700 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Grade Students</a>
                         <a class="block w-1/2 mx-auto cursor-pointer text-white text-sm font-semibold rounded-lg bg-red-500 hover:bg-red-700 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Delete Class</a>
                     </div>
                     <!-- End of about section -->

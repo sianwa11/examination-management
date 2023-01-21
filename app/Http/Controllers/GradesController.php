@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
 use App\Models\Grades;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class GradesController extends Controller
 {
@@ -20,11 +24,16 @@ class GradesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $class_id = \request()->query('id');
+        $students = User::whereHas('class_students', function (Builder $query){
+            $query->where('class_id', 'like', \request()->query('id'));
+        })->get();
+
+        return view('grades.create', compact('students', 'class_id'));
     }
 
     /**
@@ -81,5 +90,17 @@ class GradesController extends Controller
     public function destroy(Grades $grades)
     {
         //
+    }
+
+    /**
+     * Show forms for grading a particular student
+     * @return void
+     */
+    public function grade_student($student_id, $class_id)
+    {
+        $student = User::find($student_id);
+        $class = Classes::find($class_id);
+
+        return view('grades.grade_students', compact('student', 'class'));
     }
 }

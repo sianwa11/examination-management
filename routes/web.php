@@ -29,6 +29,17 @@ Route::resource('student', \App\Http\Controllers\StudentController::class);
 /* CLASS STUDENTS */
 Route::resource('class-students', \App\Http\Controllers\ClassStudentsController::class);
 
+/* Grades */
+Route::get('grade_student/{student_id}/{class_id}', [\App\Http\Controllers\GradesController::class, 'grade_student'])->name('grade_student');
+Route::resource('grades', \App\Http\Controllers\GradesController::class);
+
+/* Cats */
+Route::resource('cats', \App\Http\Controllers\CatsController::class);
+
+/* Finals */
+Route::resource('finals', \App\Http\Controllers\FinalGradeController::class);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'student'])->name('dashboard');

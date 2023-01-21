@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Grades extends Model
+class Cats extends Model
 {
     use HasFactory;
 
@@ -14,13 +14,9 @@ class Grades extends Model
     /**
      * Relationships
      */
-    public function cats()
-    {
-        return $this->hasOne(Cats::class);
-    }
 
-    public function final_grades()
+    public function grades()
     {
-        return $this->hasOne(FinalGrade::class);
+        return $this->belongsTo(Grades::class);
     }
 }
