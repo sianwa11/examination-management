@@ -6,23 +6,42 @@
 
 
         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
+                data-tabs-toggle="#myTabContent" role="tablist">
                 <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="students-tab" data-tabs-target="#students" type="button" role="tab" aria-controls="students" aria-selected="false">Students</button>
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="students-tab"
+                            data-tabs-target="#students" type="button" role="tab" aria-controls="students"
+                            aria-selected="false">Students
+                    </button>
                 </li>
                 <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="cats-tab" data-tabs-target="#cats" type="button" role="tab" aria-controls="cats" aria-selected="false">CATS</button>
+                    <button
+                        class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                        id="cats-tab" data-tabs-target="#cats" type="button" role="tab" aria-controls="cats"
+                        aria-selected="false">CATS
+                    </button>
                 </li>
+
                 <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="attendance-tab" data-tabs-target="#attendance" type="button" role="tab" aria-controls="attendance" aria-selected="false">Attendance</button>
+                    <button
+                        class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                        id="finals-tab" data-tabs-target="#finals" type="button" role="tab" aria-controls="finals"
+                        aria-selected="false">Finals
+                    </button>
                 </li>
-                <li role="presentation">
-                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="finals-tab" data-tabs-target="#finals" type="button" role="tab" aria-controls="finals" aria-selected="false">Finals</button>
+
+                <li class="mr-2" role="presentation">
+                    <button
+                        class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                        id="totals-tab" data-tabs-target="#totals" type="button" role="tab" aria-controls="totals"
+                        aria-selected="false">Totals
+                    </button>
                 </li>
             </ul>
         </div>
         <div id="myTabContent">
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="students" role="tabpanel" aria-labelledby="students-tab">
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="students" role="tabpanel"
+                 aria-labelledby="students-tab">
                 <div class="p-10">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -41,14 +60,17 @@
                         <tbody>
                         @forelse($students as $student)
                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{$student->firstname}}
                                 </th>
                                 <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{$student->lastname}}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="{{route('grade_student',['student_id' => $student->id,'class_id' =>$class_id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Grade Student</a>
+                                    <a href="{{route('grade_student',['student_id' => $student->id,'class_id' =>$class_id])}}"
+                                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Grade
+                                        Student</a>
                                 </td>
                             </tr>
                         @empty
@@ -61,14 +83,155 @@
                 </div>
 
             </div>
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="cats" role="tabpanel" aria-labelledby="cats-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">CATS tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="cats" role="tabpanel"
+                 aria-labelledby="cats-tab">
+                <div class="p-10">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                First name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Last name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Attendance
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                CAT 1
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                CAT 2
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Total
+                            </th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @forelse($exams_marks as $mark)
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{\App\Models\User::find($mark->user_id)->firstname}}
+                                </th>
+                                <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{\App\Models\User::find($mark->user_id)->lastname}}
+                                </td>
+                                <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{$mark->cats->attendance}} / 40
+                                </td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{$mark->cats->cat_1}}
+                                </td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{$mark->cats->cat_2}}
+                                </td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{$mark->cats->cat_1 + $mark->cats->cat_2}} / 80
+                                </td>
+                            </tr>
+                        @empty
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <p>No students here</p>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Attendance tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="finals" role="tabpanel"
+                 aria-labelledby="finals-tab">
+                <div class="p-10">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                First name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Last name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                finals
+                            </th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @forelse($exams_marks as $mark)
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{\App\Models\User::find($mark->user_id)->firstname}}
+                                </th>
+                                <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{\App\Models\User::find($mark->user_id)->lastname}}
+                                </td>
+                                <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{$mark->final_grades->finals}} / 100
+                                </td>
+                            </tr>
+                        @empty
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <p>No students here</p>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="finals" role="tabpanel" aria-labelledby="finals-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Finals tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="totals" role="tabpanel"
+                 aria-labelledby="totals-tab">
+                <div class="p-10">
+                    <h1>Average Grade: {{$avg_grade}} %</h1>
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                First name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Last name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Total
+                            </th>
+
+                            <th scope="col" class="px-6 py-3">
+                                Percentage
+                            </th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @forelse($exams_marks as $mark)
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{\App\Models\User::find($mark->user_id)->firstname}}
+                                </th>
+                                <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{\App\Models\User::find($mark->user_id)->lastname}}
+                                </td>
+                                <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{$mark->total_grade}} / 180
+                                </td>
+                                <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{$mark->percentage}} %
+                                </td>
+                            </tr>
+                        @empty
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <p>No students here</p>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 

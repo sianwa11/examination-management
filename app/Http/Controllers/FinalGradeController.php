@@ -117,12 +117,12 @@ class FinalGradeController extends Controller
     private function calculateFinalGrade($grades)
     {
         $grade_id = $grades->id;
-        $cat1 = ($grades->cats->cat_1 / 40) * 100 ?? 0;
-        $cat2 = ($grades->cats->cat_2 / 40) * 100 ?? 0;
+        $cat1 = $grades->cats->cat_1 ?? 0;
+        $cat2 = $grades->cats->cat_2 ?? 0;
         $final = $grades->final_grades->finals ?? 0;
 
         $total = $cat1 + $cat2 + $final;
-        $percentage = round(($total / 300) * 100, 2);
+        $percentage = round(($total / 180) * 100, 2);
 
         Grades::where('id', $grade_id)->update(['total_grade' => $total, 'percentage' => $percentage]);
     }

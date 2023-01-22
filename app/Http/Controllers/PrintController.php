@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cats;
-use App\Models\Grades;
 use Illuminate\Http\Request;
 
-class CatsController extends Controller
+class PrintController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,37 +30,20 @@ class CatsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'cat_1' => 'integer',
-            'cat_2' => 'integer',
-            'attendance' => 'integer',
-        ]);
-        // If class_id & user_id don't exist in grades table insert
-        $grade = Grades::firstOrCreate([
-            'class_id' =>$request['class_id'],
-            'user_id' => $request['user_id'],
-        ]);
-
-        if(empty($grade)) return;
-
-        $data['grades_id'] = $grade->id;
-
-        Cats::firstOrCreate($data);
-
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cats  $cats
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cats $cats)
+    public function show($id)
     {
         //
     }
@@ -70,10 +51,10 @@ class CatsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cats  $cats
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cats $cats)
+    public function edit($id)
     {
         //
     }
@@ -82,10 +63,10 @@ class CatsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cats  $cats
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cats $cats)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -93,10 +74,10 @@ class CatsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cats  $cats
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cats $cats)
+    public function destroy($id)
     {
         //
     }

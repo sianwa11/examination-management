@@ -17,4 +17,11 @@ class Classes extends Model
     {
         return $this->hasMany(ClassStudents::class, 'class_id');
     }
+
+    /* Relationships for teacher */
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

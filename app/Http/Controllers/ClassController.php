@@ -48,6 +48,8 @@ class ClassController extends Controller
             'class_image' => 'required',
         ]);
 
+        $data['created_by'] = auth()->user()->id;
+
         Classes::create($data);
 
         return redirect(route('class.index'));

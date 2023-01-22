@@ -48,7 +48,7 @@
                             @forelse($class->class_students as $students)
                             <a class="flex-col items-center m-2 cursor-pointer" href="#" >
                                 <img class="h-16 w-16 rounded-full"
-                                     src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/f04b52da-12f2-449f-b90c-5e4d5e2b1469_361x361.png"
+                                     src="https://www.pngitem.com/pimgs/m/576-5768680_avatar-png-icon-person-icon-png-free-transparent.png"
                                      alt="">
                                 <p class="text-main-color">{{\App\Models\User::find($students->user_id)->firstname. ' ' .\App\Models\User::find($students->user_id)->lastname}}</p>
                             </a>

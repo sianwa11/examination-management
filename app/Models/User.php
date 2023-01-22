@@ -43,7 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-//    Relationships
+
+    /**
+     * Relationships
+     */
 
     public function students()
     {
@@ -53,5 +56,13 @@ class User extends Authenticatable
     public function class_students()
     {
         return $this->hasMany(ClassStudents::class);
+    }
+
+    /**
+     * For the teacher
+     */
+    public function my_classes()
+    {
+        return $this->hasMany(Classes::class, 'created_by');
     }
 }

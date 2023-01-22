@@ -18,6 +18,7 @@ class CreateClassesTable extends Migration
             $table->string('class_name');
             $table->longText('description');
             $table->string('class_image');
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

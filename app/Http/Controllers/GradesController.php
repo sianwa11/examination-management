@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cats;
 use App\Models\Classes;
+use App\Models\FinalGrade;
 use App\Models\Grades;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -29,17 +31,21 @@ class GradesController extends Controller
     public function create(): View
     {
         $class_id = \request()->query('id');
-        $students = User::whereHas('class_students', function (Builder $query){
+        $students = User::whereHas('class_students', function (Builder $query) {
             $query->where('class_id', 'like', \request()->query('id'));
         })->get();
 
-        return view('grades.create', compact('students', 'class_id'));
+        $exams_marks = Grades::where('class_id', $class_id)->with('cats', 'final_grades')->get();
+        $avg_grade = round(Grades::where('class_id', $class_id)->avg('percentage'),2);
+
+        return view('grades.create', compact('students', 'class_id',
+            'exams_marks', 'avg_grade'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,18 +56,26 @@ class GradesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Grades  $grades
+     * @param \App\Models\Grades $grades
      * @return \Illuminate\Http\Response
      */
     public function show(Grades $grades)
     {
-        //
+    }
+
+    public function showStudent()
+    {
+        $id = auth()->user()->id;
+        $my_grades = Grades::where('user_id', $id)->with('cats','final_grades')->get();
+        $avg_grade = round(Grades::where('user_id',$id)->avg('percentage'), 2);
+
+        return view('my_grades', compact('my_grades', 'avg_grade'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Grades  $grades
+     * @param \App\Models\Grades $grades
      * @return \Illuminate\Http\Response
      */
     public function edit(Grades $grades)
@@ -72,8 +86,8 @@ class GradesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Grades  $grades
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Grades $grades
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Grades $grades)
@@ -84,7 +98,7 @@ class GradesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Grades  $grades
+     * @param \App\Models\Grades $grades
      * @return \Illuminate\Http\Response
      */
     public function destroy(Grades $grades)
