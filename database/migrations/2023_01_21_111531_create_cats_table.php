@@ -18,6 +18,7 @@ class CreateCatsTable extends Migration
             $table->foreignId('grades_id')->constrained('grades')->onDelete('cascade');
             $table->integer('cat_1')->nullable();
             $table->integer('cat_2')->nullable();
+            $table->integer('co-curricular')->nullable();
             $table->integer('attendance')->nullable();
             $table->timestamps();
         });

@@ -54,7 +54,7 @@
                         {{$my_grades->final_grades->finals}} / 100
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{$my_grades->total_grade}} / 180
+                        {{$my_grades->total_grade}} / 260
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$my_grades->percentage}} %

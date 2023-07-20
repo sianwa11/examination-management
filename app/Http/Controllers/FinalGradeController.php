@@ -65,6 +65,7 @@ class FinalGradeController extends Controller
             return 'Already created';
         }
 
+//        dd($grades);
 
         return redirect('/class/'.$grade->class_id);
     }
@@ -119,10 +120,13 @@ class FinalGradeController extends Controller
         $grade_id = $grades->id;
         $cat1 = $grades->cats->cat_1 ?? 0;
         $cat2 = $grades->cats->cat_2 ?? 0;
+        $co_curricular = $grades->cats->{'co - curricular'} ?? 0;
+        $attendance = $grades->cats->attendance ?? 0;
         $final = $grades->final_grades->finals ?? 0;
 
-        $total = $cat1 + $cat2 + $final;
-        $percentage = round(($total / 180) * 100, 2);
+        $total = $cat1 + $cat2 + $co_curricular + $attendance + $final;
+//        $percentage = round(($total / 180) * 100, 2);
+        $percentage = round(($total / 260) * 100, 2);
 
         Grades::where('id', $grade_id)->update(['total_grade' => $total, 'percentage' => $percentage]);
     }

@@ -62,10 +62,10 @@
                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$student->firstname}}
+                                    {{$student->firstname ?? ''}}
                                 </th>
                                 <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$student->lastname}}
+                                    {{$student->lastname ?? ''}}
                                 </td>
                                 <td class="px-6 py-4">
                                     <a href="{{route('grade_student',['student_id' => $student->id,'class_id' =>$class_id])}}"
@@ -121,16 +121,16 @@
                                     {{\App\Models\User::find($mark->user_id)->lastname}}
                                 </td>
                                 <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$mark->cats->attendance}} / 40
+                                    {{$mark->cats->attendance ?? 0}} / 40
                                 </td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$mark->cats->cat_1}}
+                                    {{$mark->cats->cat_1 ?? 0}}
                                 </td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$mark->cats->cat_2}}
+                                    {{$mark->cats->cat_2 ?? 0}}
                                 </td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$mark->cats->cat_1 + $mark->cats->cat_2}} / 80
+                                    {{($mark->cats->cat_1 ?? 0 )+ ($mark->cats->cat_2 ?? 0)}} / 80
                                 </td>
                             </tr>
                         @empty
@@ -171,7 +171,7 @@
                                     {{\App\Models\User::find($mark->user_id)->lastname}}
                                 </td>
                                 <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$mark->final_grades->finals}} / 100
+                                    {{$mark->final_grades->finals ?? 0}} / 100
                                 </td>
                             </tr>
                         @empty
@@ -218,7 +218,7 @@
                                     {{\App\Models\User::find($mark->user_id)->lastname}}
                                 </td>
                                 <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$mark->total_grade}} / 180
+                                    {{$mark->total_grade ?? 0}} / 260
                                 </td>
                                 <td class="px-6 py-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{$mark->percentage}} %

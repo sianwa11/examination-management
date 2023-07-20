@@ -40,6 +40,7 @@ class CatsController extends Controller
             'cat_1' => 'integer',
             'cat_2' => 'integer',
             'attendance' => 'integer',
+            'co-curricular' => 'integer'
         ]);
         // If class_id & user_id don't exist in grades table insert
         $grade = Grades::firstOrCreate([
